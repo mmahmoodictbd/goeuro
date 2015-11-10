@@ -21,6 +21,12 @@ public class App {
 
 	private void run(String[] args) {
 
+		if (args.length == 0 || args[0] == null || args[0].trim().length() == 0) {
+			throw new IllegalStateException("City name is not provided.");
+		}
+
+		logger.debug("Inputed city name - {}", args[0]);
+
 		URL endpoint = null;
 		try {
 			endpoint = new URL(BASE_ENDPOINT + args[0]);
