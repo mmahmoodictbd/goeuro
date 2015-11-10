@@ -15,7 +15,6 @@ public class App {
 	private final static String BASE_ENDPOINT = "http://api.goeuro.com/api/v2/position/suggest/en/";
 
 	public static void main(String[] args) {
-		args = new String[] { "Berlin" };
 		App app = new App();
 		app.run(args);
 	}
