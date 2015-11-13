@@ -21,7 +21,8 @@ public class App {
 
 	private void run(String[] args) {
 
-		if (args.length == 0 || args[0] == null || args[0].trim().length() == 0) {
+		if (args.length == 0 || args[0] == null
+				|| args[0].trim().length() == 0) {
 			throw new IllegalStateException("City name is not provided.");
 		}
 
@@ -35,6 +36,7 @@ public class App {
 		}
 
 		String jsonData = Utils.readUrl(endpoint);
+		logger.debug("Retrived json: {}", jsonData);
 
 		if (jsonData == null) {
 			throw new IllegalStateException(
@@ -42,6 +44,7 @@ public class App {
 		}
 
 		JSONArray locArr = new JSONArray(jsonData);
+		logger.debug("Loc array size: {}", locArr.length());
 
 		StringBuilder csv = new StringBuilder();
 		csv.append(buildCsvHeader());
@@ -81,11 +84,13 @@ public class App {
 		line.append(",");
 		line.append(obj.get("type"));
 		line.append(",");
-		line.append(obj.get("geo_position") != null ? ((JSONObject) obj
-				.get("geo_position")).get("latitude") : "");
+		line.append(obj.get("geo_position") != null
+				? ((JSONObject) obj.get("geo_position")).get("latitude")
+				: "");
 		line.append(",");
-		line.append(obj.get("geo_position") != null ? ((JSONObject) obj
-				.get("geo_position")).get("longitude") : "");
+		line.append(obj.get("geo_position") != null
+				? ((JSONObject) obj.get("geo_position")).get("longitude")
+				: "");
 		line.append("\n");
 
 		return line.toString();
